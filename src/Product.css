@@ -11,6 +11,12 @@
     z-index: 1;
     background-color: white;
 }
+.product:hover{
+ background-color: lightgray;
+ 
+
+   
+}
 .product > img{
     max-height: 200px;
     width: 100%;
@@ -25,6 +31,8 @@
     color: #111;
 }
 .product >button:hover{
+    background-color: #d8a82d;
+    color: black;
     
 }
 .product_info{

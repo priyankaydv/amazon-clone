@@ -45,6 +45,12 @@
 .header_option1{
     font-size: 10px;
 }
+ a{
+    font-size: 10px;
+    text-decoration: none;
+    color: white;
+}
+
 .header_option2{
     font-size: 13px;
     font-weight: 800;

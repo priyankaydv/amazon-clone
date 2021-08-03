@@ -4,9 +4,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import {Link} from 'react-router-dom';
 import { useStateValue } from './StateProvider';
+import { auth } from './firebase';
 
 function Header() {
-  const [{cart},dispatch]=useStateValue();
+  const [{cart,user},dispatch]=useStateValue();
+
+  const handleAuthentication =() =>{
+    if(user){
+      auth.signOut();
+    }
+  }
+
     return (
         <div className='header'>
         <Link to="/">
@@ -18,19 +26,24 @@ function Header() {
         <SearchIcon className="header_searchIcon" />
         </div>
         <div className="header_nav">
-        <div className="header_option">
-          <span className="header_option1">Hello guest</span>
-          <span className="header_option2">Sign in</span>
+        <Link to={!user && '/Login'}>
+        <div className="header_option" onClick ={handleAuthentication}>
+          <span className="header_option1">Hello {!user?'Guest':user.email}</span>
+          <span className="header_option2">{user? 'Sign Out':'Sign In'}</span>
+          
         </div>
+        </Link>
 
         <div className="header_option">
         <span className="header_option1">Returns</span>
         <span className="header_option2">& Orders</span>
+       
         </div>
 
         <div className="header_option">
-        <span className="header_option1">Your</span>
-        <span className="header_option2">Prime</span>
+        
+        <a href="https://www.primevideo.com/" className="header_options1">Your</a>
+        <a href="https://www.primevideo.com/" className="header_options2">Prime</a>
         </div>
 
         <Link to="/Checkout">
